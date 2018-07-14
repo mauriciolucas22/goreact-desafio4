@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { Container, Header, MenuList } from './styles';
 
+import ListItem from './components/ListItem';
+
 class Home extends Component {
   state = {};
 
@@ -18,6 +20,8 @@ class Home extends Component {
           <button type="button" onClick={() => {}}>Camisetas</button>
           <button type="button" onClick={() => {}}>Camisetas</button>
         </MenuList>
+
+        <ListItem />
       </Container>
     );
   }
