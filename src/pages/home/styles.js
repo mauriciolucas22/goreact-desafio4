@@ -19,6 +19,10 @@ export const Header = styled.header`
     font-size: 14px;
     color: #727271;
     margin-top: 20px;
+
+    i {
+      margin-right: 10px;
+    }
   }
 `;
 

@@ -12,7 +12,7 @@ class Home extends Component {
       <Container>
         <Header>
           <h1>GoCommerce</h1>
-          <small><i class="fa fa-shopping-cart" /> Meu carrinho (3)</small>
+          <small><i class="fa fa-shopping-cart" />Meu carrinho (3)</small>
         </Header>
 
         <MenuList>
