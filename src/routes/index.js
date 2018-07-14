@@ -9,3 +9,5 @@ const Routes = () => (
     <Route exact path="/" component={Home} />
   </Switch>
 );
+
+export default Routes;

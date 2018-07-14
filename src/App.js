@@ -5,14 +5,13 @@ import { BrowserRouter } from 'react-router-dom';
 import './config/reactotron';
 import './styles/global';
 
-import Home from './pages/home';
-
+import Routes from './routes';
 import store from './store';
 
 const App = () => (
   <Provider store={store}>
     <BrowserRouter>
-      <Home />
+      <Routes />
     </BrowserRouter>
   </Provider>
 );
