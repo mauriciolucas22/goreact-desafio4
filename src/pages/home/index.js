@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { Actions as DatabaseActions } from '../../store/ducks/database';
+
 import { Container, Header, MenuList } from './styles';
 
 import ListItem from './components/ListItem';
 
 class Home extends Component {
   state = {};
+
+  componentWillMount() {
+    console.log(this.props);
+  }
 
   render() {
     return (
@@ -27,4 +36,10 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  database: state.database,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(DatabaseActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
