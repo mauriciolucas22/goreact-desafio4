@@ -1,5 +1,7 @@
 import { injectGlobal } from 'styled-components';
 
+import 'font-awesome/css/font-awesome.css';
+
 injectGlobal`
   * {
     margin: 0;
@@ -15,9 +17,12 @@ injectGlobal`
   body {
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    background: #eee;
+    background: #fff;
     font-family: 'Montserrat', sans-serif;
-    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
   }
 
   button {
