@@ -5,9 +5,11 @@ import { bindActionCreators } from 'redux';
 
 import { Actions as DatabaseActions } from '../../store/ducks/database';
 
-import { Container, Header, MenuList } from './styles';
+import { Container } from './styles';
 
 import ListItem from './components/ListItem';
+
+import Header from '../../components/Header';
 
 class Home extends Component {
   state = {};
@@ -19,17 +21,7 @@ class Home extends Component {
   render() {
     return (
       <Container>
-        <Header>
-          <h1>GoCommerce</h1>
-          <small><i class="fa fa-shopping-cart" />Meu carrinho (3)</small>
-        </Header>
-
-        <MenuList>
-          <button type="button" onClick={() => {}}>Camisetas</button>
-          <button type="button" onClick={() => {}}>Camisetas</button>
-          <button type="button" onClick={() => {}}>Camisetas</button>
-        </MenuList>
-
+        <Header />
         <ListItem />
       </Container>
     );
