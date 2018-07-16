@@ -15,6 +15,10 @@ export const Container = styled.div`
   img {
     height: 250px;
     width: 200px;
+
+    &:hover {
+      box-shadow: 1px 1px 5px 2px #888888;
+    }
   }
 
   strong {
