@@ -9,6 +9,9 @@ export const List = styled.table`
   width: 100%;
   text-align: center;
   margin-top: 20px;
+  border: 1px solid #cecdcb;
+  border-radius: 4px;
+  padding: 20px;
 
   thead th {
     font-size: 15px;
@@ -24,10 +27,17 @@ export const List = styled.table`
 `;
 
 export const ProductItem = styled.tr`
+  margin-top: 20px;
+
   td {
-    border-bottom: 1px solid #282828;
+    margin-top: 10px;
+    border-bottom: 1px solid #cecdcb;
     font-size: 13px;
     padding: 0 10px;
     line-height: 40px;
+
+    &:first-child {
+      width: 50%;
+    }
   }
 `;
