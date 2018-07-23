@@ -6,9 +6,11 @@ import { Container, MenuList } from './styles';
 const Header = () => (
   <Fragment>
     <Container>
-      <h1>
-        GoCommerce
-      </h1>
+      <Link to="/" style={{ textDecoration: 'none' }}>
+        <h1>
+          GoCommerce
+        </h1>
+      </Link>
       <Link to="/cart">
         <small>
           <i className="fa fa-shopping-cart" />
