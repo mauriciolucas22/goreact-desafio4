@@ -28,8 +28,7 @@ export default function cart(state = INITIAL_STATE, action) {
     case Types.REMOVE:
       return {
         ...state,
-        error: false,
-        data: state.data.filter(product => product.id !== action.payload.id),
+        data: state.data.filter(product => product.id !== action.payload.productID),
       };
 
     default:
