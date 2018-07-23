@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
@@ -13,50 +13,58 @@ import Header from '../Header';
 // local styles
 import { Container, List, ProductItem } from './styles';
 
-const Cart = () => (
-  <Container>
-    <Header />
+class Cart extends Component {
+  componentDidMount() {
+    this.props.getCart();
+  }
 
-    <List cellPadding={0} cellSpacing={0}>
-      <thead>
-        <th>
-          PRODUTO
-        </th>
-        <th>
-          VALOR
-        </th>
-        <th>
-          QTD
-        </th>
-        <th>
-          SUBTOTAL
-        </th>
-      </thead>
+  render() {
+    return (
+      <Container>
+        <Header />
 
-      <tbody>
-        <ProductItem>
-          <td>
-            Camisa 1
-            Element
-          </td>
-          <td>
-            R$ 50,00
-          </td>
-          <td>
-            <input
-              type="text"
-              value={1}
-              onChange={() => {}}
-            />
-          </td>
-          <td>
-            R$ 50,00
-          </td>
-        </ProductItem>
-      </tbody>
-    </List>
-  </Container>
-);
+        <List cellPadding={0} cellSpacing={0}>
+          <thead>
+            <th>
+              PRODUTO
+            </th>
+            <th>
+              VALOR
+            </th>
+            <th>
+              QTD
+            </th>
+            <th>
+              SUBTOTAL
+            </th>
+          </thead>
+
+          <tbody>
+            <ProductItem>
+              <td>
+                Camisa 1
+                Element
+              </td>
+              <td>
+                R$ 50,00
+              </td>
+              <td>
+                <input
+                  type="text"
+                  value={1}
+                  onChange={() => {}}
+                />
+              </td>
+              <td>
+                R$ 50,00
+              </td>
+            </ProductItem>
+          </tbody>
+        </List>
+      </Container>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   cart: state.cart,

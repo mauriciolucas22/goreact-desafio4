@@ -11,6 +11,9 @@ const INITIAL_STATE = {
 
 export default function cart(state = INITIAL_STATE, action) {
   switch (action.type) {
+    case Types.ADD_TO_CART:
+      return { ...state, data: action.payload };
+
     default:
       return state;
   }
