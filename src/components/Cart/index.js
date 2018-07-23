@@ -1,5 +1,12 @@
 import React from 'react';
 
+// Redux
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+// Actions
+import { Actions as CartActions } from '../../store/ducks/cart';
+
 // global components
 import Header from '../Header';
 
@@ -12,10 +19,18 @@ const Cart = () => (
 
     <List cellPadding={0} cellSpacing={0}>
       <thead>
-        <th>PRODUTO</th>
-        <th>VALOR</th>
-        <th>QTD</th>
-        <th>SUBTOTAL</th>
+        <th>
+          PRODUTO
+        </th>
+        <th>
+          VALOR
+        </th>
+        <th>
+          QTD
+        </th>
+        <th>
+          SUBTOTAL
+        </th>
       </thead>
 
       <tbody>
@@ -24,7 +39,9 @@ const Cart = () => (
             Camisa 1
             Element
           </td>
-          <td>R$ 50,00</td>
+          <td>
+            R$ 50,00
+          </td>
           <td>
             <input
               type="text"
@@ -32,11 +49,19 @@ const Cart = () => (
               onChange={() => {}}
             />
           </td>
-          <td>R$ 50,00</td>
+          <td>
+            R$ 50,00
+          </td>
         </ProductItem>
       </tbody>
     </List>
   </Container>
 );
 
-export default Cart;
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
+const mapDispatchToProsp = dispatch => bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProsp)(Cart);
