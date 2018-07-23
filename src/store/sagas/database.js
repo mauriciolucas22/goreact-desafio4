@@ -5,7 +5,7 @@ import { Actions as DatabaseActions } from '../ducks/database';
 
 export function* getDatabase() {
   try {
-    const response = yield call(api.get, '/categories');
+    const response = yield call(api.get, '/products');
 
     yield put(DatabaseActions.saveData(response.data));
   } catch (err) {

@@ -1,20 +1,27 @@
-import Immutable from 'seamless-immutable';
-
 export const Types = {
   GET: 'database/GET',
-  SAVE: 'database/SAVE',
+  SET: 'database/SET',
   ERROR: 'database/ERROR',
 };
 
-const INITAL_STATE = Immutable({
+const INITAL_STATE = {
   data: [],
+  loading: false,
   error: false,
-});
+};
 
 export default function database(state = INITAL_STATE, action) {
   switch (action.type) {
-    case Types.SAVE:
-      return { ...state, data: action.payload.data, error: false };
+    case Types.GET:
+      return { ...state, loading: true };
+
+    case Types.SET:
+      return {
+        ...state,
+        data: action.payload.data,
+        error: false,
+        loading: false,
+      };
 
     case Types.ERROR:
       return { ...state, error: action.payload.message };

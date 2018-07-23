@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,10 +13,12 @@ import ListItem from './components/ListItem';
 import Header from '../../components/Header';
 
 class Home extends Component {
-  state = {};
+  static propTypes = {
+    getDatabase: PropTypes.func.isRequired,
+  };
 
   componentWillMount() {
-    console.log(this.props);
+    this.props.getDatabase();
   }
 
   render() {
