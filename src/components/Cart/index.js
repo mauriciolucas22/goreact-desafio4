@@ -11,56 +11,75 @@ import { Actions as CartActions } from '../../store/ducks/cart';
 import Header from '../Header';
 
 // local styles
-import { Container, List, ProductItem } from './styles';
+import {
+  Container, List, ProductItem, Empty,
+} from './styles';
 
 class Cart extends Component {
   componentDidMount() {
     this.props.getCart();
   }
 
+  renderList = () => (
+    <List cellPadding={0} cellSpacing={0}>
+      <thead>
+        <th>
+                PRODUTO
+        </th>
+        <th>
+                VALOR
+        </th>
+        <th>
+                QTD
+        </th>
+        <th>
+                SUBTOTAL
+        </th>
+      </thead>
+
+      <tbody>
+        <ProductItem>
+          <td>
+                  Camisa 1
+                  Element
+          </td>
+          <td>
+                  R$ 50,00
+          </td>
+          <td>
+            <input
+              type="text"
+              value={1}
+              onChange={() => {}}
+            />
+          </td>
+          <td>
+                  R$ 50,00
+          </td>
+          <td>
+            <button type="button" onPress={() => this.props.removeFromCart(1)}>
+              <i className="fa fa-times" />
+            </button>
+          </td>
+        </ProductItem>
+      </tbody>
+    </List>
+  );
+
   render() {
     return (
       <Container>
         <Header />
 
-        <List cellPadding={0} cellSpacing={0}>
-          <thead>
-            <th>
-              PRODUTO
-            </th>
-            <th>
-              VALOR
-            </th>
-            <th>
-              QTD
-            </th>
-            <th>
-              SUBTOTAL
-            </th>
-          </thead>
+        { this.props.cart.data.length ? (
+          this.renderList()
+        ) : (
+          <Empty>
+            <i className="fa fa-shopping-cart" />
+          </Empty>
+        ) }
 
-          <tbody>
-            <ProductItem>
-              <td>
-                Camisa 1
-                Element
-              </td>
-              <td>
-                R$ 50,00
-              </td>
-              <td>
-                <input
-                  type="text"
-                  value={1}
-                  onChange={() => {}}
-                />
-              </td>
-              <td>
-                R$ 50,00
-              </td>
-            </ProductItem>
-          </tbody>
-        </List>
+
       </Container>
     );
   }

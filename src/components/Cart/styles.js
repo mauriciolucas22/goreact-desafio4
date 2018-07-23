@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 1200px;
   height: 100%;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const List = styled.table`
@@ -39,5 +41,23 @@ export const ProductItem = styled.tr`
     &:first-child {
       width: 50%;
     }
+
+    button {
+      margin-left: 10px;
+      border: 0;
+    }
+  }
+`;
+
+export const Empty = styled.div`
+  margin-top: 20px;
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    color: #eee;
+    font-size: 200px;
   }
 `;
