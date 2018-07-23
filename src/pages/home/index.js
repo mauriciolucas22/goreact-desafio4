@@ -15,6 +15,7 @@ import Header from '../../components/Header';
 class Home extends Component {
   static propTypes = {
     getDatabase: PropTypes.func.isRequired,
+    database: PropTypes.shape().isRequired,
   };
 
   componentWillMount() {
@@ -22,10 +23,11 @@ class Home extends Component {
   }
 
   render() {
+    const { data } = this.props.database;
     return (
       <Container>
         <Header />
-        <ListItem />
+        { data && <ListItem database={data} />}
       </Container>
     );
   }

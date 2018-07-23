@@ -1,17 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-const Product = () => (
+const Product = ({ product }) => (
   <Container>
     <Link to="/product">
-      <img src="https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg" alt="product" />
+      <img src={product.image} alt={product.brand} />
     </Link>
-    <strong>Camiseta A</strong>
-    <small>Element</small>
-    <p className="preco">R$ 50,00</p>
+    <strong>{product.name}</strong>
+    <small>{product.brand}</small>
+    <p className="preco">R$ {product.price}</p>
   </Container>
 );
+
+Product.propTypes = {
+  product: PropTypes.shape({
+    image: PropTypes.string,
+    brand: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.string,
+  }).isRequired,
+};
 
 export default Product;

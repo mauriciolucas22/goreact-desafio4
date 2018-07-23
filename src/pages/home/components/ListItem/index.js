@@ -1,20 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { ProductList } from './styles';
 
 import Product from './components/Product';
 
-const ListItem = () => (
+const ListItem = ({ database }) => (
   <ProductList>
-    <Product />
-    <Product />
-    <Product />
-    <Product />
-    <Product />
-    <Product />
-    <Product />
-    <Product />
+    {database.map(product => <Product product={product} />)}
   </ProductList>
 );
+
+ListItem.propTypes = {
+  database: PropTypes.arrayOf(PropTypes.shape).isRequired,
+};
 
 export default ListItem;
