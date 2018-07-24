@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Actions as DatabaseActions } from '../../store/ducks/database';
 
 // local styles
 import { Container, Content, Details } from './styles';
@@ -6,19 +10,37 @@ import { Container, Content, Details } from './styles';
 // global Components
 import Header from '../Header';
 
-const ProductDetails = () => (
-  <Container>
-    <Header />
-    <Content>
-      <img src="https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg" alt="product" />
-      <Details>
-        <strong>Camiseta 1</strong>
-        <small>Element</small>
-        <p>R$ 50,00</p>
-        <button type="button" onClick={() => {}}>Adicionar ao carrinho</button>
-      </Details>
-    </Content>
-  </Container>
-);
+class ProductDetails extends Component {
+  componentWillMount() {
+    this.props.getProduct(this.props.match.params.id);
+  }
 
-export default ProductDetails;
+  render() {
+    const { productSelected } = this.props;
+    return (
+      <Container>
+        <Header />
+        { this.props.loading ? <p>loading</p> : (
+          <Content>
+            <img src={productSelected.image} alt={productSelected.brand} />
+            <Details>
+              <strong>{productSelected.name}</strong>
+              <small>{productSelected.brand}</small>
+              <p>R$ {productSelected.price}</p>
+              <button type="button" onClick={() => {}}>Adicionar ao carrinho</button>
+            </Details>
+          </Content>
+        ) }
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  productSelected: state.database.productSelected,
+  loading: state.database.loading,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(DatabaseActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

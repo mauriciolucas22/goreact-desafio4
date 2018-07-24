@@ -9,7 +9,7 @@ import Cart from '../components/Cart';
 const Routes = () => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route exact path="/product" component={ProductDetails} />
+    <Route path="/product/:id" component={ProductDetails} />
     <Route exact path="/cart" component={Cart} />
   </Switch>
 );

@@ -1,11 +1,14 @@
 export const Types = {
   GET: 'database/GET',
+  GET_PRODUCT: 'database/GET_PRODUCT',
   SET: 'database/SET',
+  SET_PRODUCT_SELECTED: 'database/SET_PRODUCT_SELECTED',
   ERROR: 'database/ERROR',
 };
 
 const INITAL_STATE = {
   data: [],
+  productSelected: null,
   loading: false,
   error: false,
 };
@@ -21,6 +24,17 @@ export default function database(state = INITAL_STATE, action) {
         data: action.payload.data,
         error: false,
         loading: false,
+      };
+
+    case Types.GET_PRODUCT:
+      return { ...state, loading: true };
+
+    case Types.SET_PRODUCT_SELECTED:
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        productSelected: action.payload.productObject,
       };
 
     case Types.ERROR:
@@ -39,6 +53,16 @@ export const Actions = {
   saveData: data => ({
     type: Types.SET,
     payload: { data },
+  }),
+
+  getProduct: productID => ({
+    type: Types.GET_PRODUCT,
+    payload: { productID },
+  }),
+
+  setProductSelected: productObject => ({
+    type: Types.SET_PRODUCT_SELECTED,
+    payload: { productObject },
   }),
 
   setError: message => ({

@@ -12,3 +12,13 @@ export function* getDatabase() {
     yield put(DatabaseActions.setError('Erro ao obter base de dados!'));
   }
 }
+
+export function* getProduct(action) {
+  try {
+    const response = yield call(api.get, `/products/${action.payload.productID}`);
+
+    yield put(DatabaseActions.setProductSelected(response.data));
+  } catch (err) {
+    yield put(DatabaseActions.setError('Erro ao obter produto!'));
+  }
+}

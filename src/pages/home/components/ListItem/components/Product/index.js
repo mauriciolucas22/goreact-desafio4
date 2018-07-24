@@ -6,7 +6,7 @@ import { Container } from './styles';
 
 const Product = ({ product }) => (
   <Container>
-    <Link to="/product">
+    <Link to={`/product/${product.id}`}>
       <img src={product.image} alt={product.brand} />
     </Link>
     <strong>{product.name}</strong>

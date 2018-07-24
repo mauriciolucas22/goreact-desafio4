@@ -7,7 +7,7 @@ import Product from './components/Product';
 
 const ListItem = ({ database }) => (
   <ProductList>
-    {database.map(product => <Product product={product} />)}
+    {database.map(product => <Product key={product.id} product={product} />)}
   </ProductList>
 );
 
