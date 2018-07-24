@@ -32,9 +32,9 @@ export default function database(state = INITAL_STATE, action) {
     case Types.SET_PRODUCT_SELECTED:
       return {
         ...state,
+        productSelected: action.payload.productObject,
         error: false,
         loading: false,
-        productSelected: action.payload.productObject,
       };
 
     case Types.ERROR:

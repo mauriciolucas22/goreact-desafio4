@@ -16,17 +16,18 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { productSelected } = this.props;
+    const { productSelected, loading } = this.props;
+    console.tron.log(this.props.database);
     return (
       <Container>
         <Header />
-        { this.props.loading ? <p>loading</p> : (
+        { loading ? <i className="fa fa-spinner" /> : (
           <Content>
-            <img src={productSelected.image} alt={productSelected.brand} />
+            <img src="https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg" alt="product" />
             <Details>
-              <strong>{productSelected.name}</strong>
-              <small>{productSelected.brand}</small>
-              <p>R$ {productSelected.price}</p>
+              <strong>Camiseta Hyperas Preta</strong>
+              <small>Quiksilver</small>
+              <p>R$ 49.99</p>
               <button type="button" onClick={() => {}}>Adicionar ao carrinho</button>
             </Details>
           </Content>
@@ -37,8 +38,7 @@ class ProductDetails extends Component {
 }
 
 const mapStateToProps = state => ({
-  productSelected: state.database.productSelected,
-  loading: state.database.loading,
+  database: state.database,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(DatabaseActions, dispatch);
