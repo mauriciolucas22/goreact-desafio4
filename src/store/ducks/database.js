@@ -1,3 +1,5 @@
+import Immutable from 'seamless-immutable';
+
 export const Types = {
   GET: 'database/GET',
   GET_PRODUCT: 'database/GET_PRODUCT',
@@ -6,12 +8,12 @@ export const Types = {
   ERROR: 'database/ERROR',
 };
 
-const INITAL_STATE = {
+const INITAL_STATE = Immutable({
   data: [],
   productSelected: null,
   loading: false,
   error: false,
-};
+});
 
 export default function database(state = INITAL_STATE, action) {
   switch (action.type) {
@@ -31,7 +33,7 @@ export default function database(state = INITAL_STATE, action) {
 
     case Types.SET_PRODUCT_SELECTED:
       return {
-        ...state,
+        data: state.data,
         productSelected: action.payload.productObject,
         error: false,
         loading: false,

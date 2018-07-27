@@ -7,9 +7,9 @@ export function* getCart() {
   try {
     // const response = yield call(api.get, '/products');
     const response = yield select(state => state.cart.data);
-    console.tron.log(response);
+    // console.tron.log(response);
     // yield put(CartActions.addToCart(response));
   } catch (err) {
-    console.tron.log('Error in get Cart');
+    // console.tron.log('Error in get Cart');
   }
 }
