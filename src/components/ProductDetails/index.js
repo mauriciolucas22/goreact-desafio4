@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -22,13 +22,17 @@ class ProductDetails extends Component {
         <Header />
         { this.props.loading ? <p>loading</p> : (
           <Content>
-            <img src={productSelected.image} alt={productSelected.brand} />
-            <Details>
-              <strong>{productSelected.name}</strong>
-              <small>{productSelected.brand}</small>
-              <p>R$ {productSelected.price}</p>
-              <button type="button" onClick={() => {}}>Adicionar ao carrinho</button>
-            </Details>
+            { productSelected && (
+              <Fragment>
+                <img src={productSelected.image} alt={productSelected.brand} />
+                <Details>
+                  <strong>{productSelected.name}</strong>
+                  <small>{productSelected.brand}</small>
+                  <p>R$ {productSelected.price}</p>
+                  <button type="button" onClick={() => {}}>Adicionar ao carrinho</button>
+                </Details>
+              </Fragment>
+            ) }
           </Content>
         ) }
       </Container>
