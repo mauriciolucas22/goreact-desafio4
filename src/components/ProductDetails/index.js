@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -11,8 +12,23 @@ import { Container, Content, Details } from './styles';
 import Header from '../Header';
 
 class ProductDetails extends Component {
+  static propTypes = {
+    getProduct: PropTypes.func.isRequired,
+    database: PropTypes.shape({
+      productSelected: PropTypes.shape({
+        name: PropTypes.string,
+        image: PropTypes.string,
+        brand: PropTypes.string,
+        price: PropTypes.number,
+      }),
+    }).isRequired,
+    loading: PropTypes.bool.isRequired,
+  };
+
   componentWillMount() {
-    this.props.getProduct(this.props.match.params.id);
+    const { getProduct } = this.props;
+    const { id } = this.props.match.params;
+    getProduct(id);
   }
 
   render() {
