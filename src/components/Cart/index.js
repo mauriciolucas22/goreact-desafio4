@@ -55,7 +55,7 @@ class Cart extends Component {
                   R$ 50,00
           </td>
           <td>
-            <button type="button" onClick={() => this.props.removeFromCart(1)}>
+            <button type="button" onClick={() => this.props.removeFromCart(product.id)}>
               <i className="fa fa-times" />
             </button>
           </td>
