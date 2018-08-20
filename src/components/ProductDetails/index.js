@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Actions as DatabaseActions } from '../../store/ducks/database';
+import { Actions as CartActions } from '../../store/ducks/cart';
 
 // local styles
 import { Container, Content, Details } from './styles';
@@ -31,12 +32,18 @@ class ProductDetails extends Component {
     getProduct(id);
   }
 
+  handleAddToCart = () => {
+    const { addToCart, database: { productSelected } } = this.props;
+    addToCart(productSelected);
+  };
+
   render() {
-    const { productSelected } = this.props.database;
+    const { loading, database: { productSelected } } = this.props;
+
     return (
       <Container>
         <Header />
-        { this.props.loading ? <p>loading</p> : (
+        { loading ? <p>loading</p> : (
           <Content>
             { productSelected && (
               <Fragment>
@@ -45,7 +52,7 @@ class ProductDetails extends Component {
                   <strong>{productSelected.name}</strong>
                   <small>{productSelected.brand}</small>
                   <p>R$ {productSelected.price}</p>
-                  <button type="button" onClick={() => {}}>Adicionar ao carrinho</button>
+                  <button type="button" onClick={this.handleAddToCart}>Adicionar ao carrinho</button>
                 </Details>
               </Fragment>
             ) }
@@ -58,8 +65,12 @@ class ProductDetails extends Component {
 
 const mapStateToProps = state => ({
   database: state.database,
+  cart: state.cart,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(DatabaseActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({
+  ...DatabaseActions,
+  ...CartActions,
+}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
