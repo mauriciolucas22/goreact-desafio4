@@ -16,7 +16,6 @@ export default function cart(state = INITIAL_STATE, action) {
       return { ...state, loading: true };
 
     case Types.ADD_TO_CART:
-      console.tron.log(action);
       return {
         loading: false,
         error: false,

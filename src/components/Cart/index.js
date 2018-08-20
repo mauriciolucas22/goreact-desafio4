@@ -20,6 +20,8 @@ class Cart extends Component {
     this.props.getCart();
   }
 
+  handleCountItems = () => {};
+
   renderList = () => (
     <List cellPadding={0} cellSpacing={0}>
       <thead>
@@ -38,14 +40,10 @@ class Cart extends Component {
       </thead>
 
       <tbody>
-        <ProductItem>
-          <td>
-                  Camisa 1
-                  Element
-          </td>
-          <td>
-                  R$ 50,00
-          </td>
+        { this.props.cart.data.map(product => (
+          <ProductItem key={product.id}>
+          <td>{product.name}</td>
+          <td>{product.price}</td>
           <td>
             <input
               type="text"
@@ -62,6 +60,8 @@ class Cart extends Component {
             </button>
           </td>
         </ProductItem>
+        )) }
+
       </tbody>
     </List>
   );
