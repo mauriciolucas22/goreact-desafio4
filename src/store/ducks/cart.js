@@ -11,20 +11,31 @@ const INITIAL_STATE = {
   error: null,
 };
 
+function getIndex(state, id) {
+  const itemIndex = state.data.findIndex(product => product.id === id);
+
+  return itemIndex;
+}
+
 export default function cart(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.GET:
       return { ...state, loading: true };
 
     case Types.ADD_TO_CART:
-      return {
-        loading: false,
-        error: false,
-        data: [
-          ...state.data,
-          { ...action.payload.product, amount: 1, subTotal: action.payload.product.price },
-        ],
-      };
+      const { product } = action.payload;
+      const exists = getIndex(state, product.id);
+
+      if (exists === -1) {
+        return {
+          loading: false,
+          error: false,
+          data: [
+            ...state.data,
+            { ...product, amount: 1, subTotal: product.price },
+          ],
+        };
+      }
 
     case Types.REMOVE:
       return {
@@ -33,9 +44,9 @@ export default function cart(state = INITIAL_STATE, action) {
       };
 
     case Types.CHANGE_AMOUNT:
-      const { newAmount } = action.payload.changes;
+      const { newAmount, productId } = action.payload.changes;
 
-      const itemIndex = state.data.findIndex(product => product.id === action.payload.changes.productId);
+      const itemIndex = getIndex(state, productId);
       state.data[itemIndex].amount = action.payload.changes.newAmount;
 
       const newSubTotal = (newAmount * state.data[itemIndex].subTotal).toFixed(2);
