@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { debounce } from 'lodash';
+
 // Redux
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -16,11 +18,22 @@ import {
 } from './styles';
 
 class Cart extends Component {
+  state = {
+    amount: '1',
+  }
+
   componentDidMount() {
     this.props.getCart();
   }
 
   handleCountItems = () => {};
+
+  changeAmount = (e, productId) => {
+    this.props.changeAmount({
+      newAmount: e.target.value,
+      productId,
+    });
+  };
 
   renderList = () => (
     <List cellPadding={0} cellSpacing={0}>
@@ -47,13 +60,11 @@ class Cart extends Component {
           <td>
             <input
               type="text"
-              value={1}
-              onChange={() => {}}
+              value={this.state.amount}
+              onChange={e => this.changeAmount(e, product.id)}
             />
           </td>
-          <td>
-                  R$ 50,00
-          </td>
+          <td>{product.subTotal}</td>
           <td>
             <button type="button" onClick={() => this.props.removeFromCart(product.id)}>
               <i className="fa fa-times" />
