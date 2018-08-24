@@ -49,7 +49,7 @@ export default function cart(state = INITIAL_STATE, action) {
       const itemIndex = getIndex(state, productId);
       state.data[itemIndex].amount = action.payload.changes.newAmount;
 
-      const newSubTotal = (newAmount * state.data[itemIndex].subTotal).toFixed(2);
+      const newSubTotal = (newAmount * state.data[itemIndex].price).toFixed(2);
       state.data[itemIndex].subTotal = newSubTotal;
 
       return {
