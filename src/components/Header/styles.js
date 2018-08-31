@@ -33,15 +33,19 @@ export const MenuList = styled.div`
   flex-direction: 'row';
 
   button {
-    color: #fff;
     margin: 5px 15px 5px 15px;
     font-size: 15px;
     font-weight: bold;
     border: 0;
     background: transparent;
 
-    &:hover {
+    a {
+      text-decoration: none;
+      color: #fff;
+
+      &:hover {
       color: #ffdae0;
+    }
     }
   }
 `;

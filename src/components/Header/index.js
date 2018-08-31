@@ -11,7 +11,7 @@ import { Actions as DatabaseActions } from '../../store/ducks/database';
 
 import { Container, MenuList } from './styles';
 
-const Header = ({ lengthCart, getCategories }) => (
+const Header = ({ lengthCart, getDatabase }) => (
   <Fragment>
     <Container>
       <Link to="/" style={{ textDecoration: 'none' }}>
@@ -28,30 +28,46 @@ const Header = ({ lengthCart, getCategories }) => (
     </Container>
 
     <MenuList>
-      <button type="button" onClick={() => getCategories(1)}>
+      <button type="button" onClick={() => getDatabase(1)}>
+        <Link to="/">
         CAMISETAS
+        </Link>
       </button>
-      <button type="button" onClick={() => getCategories(2)}>
-        CAMISAS
+
+      <button type="button" onClick={() => getDatabase(2)}>
+        <Link to="/">
+          CAMISAS
+        </Link>
       </button>
-      <button type="button" onClick={() => getCategories(3)}>
+      <button type="button" onClick={() => getDatabase(3)}>
+        <Link to="/">
         BONÉS
+        </Link>
+
       </button>
-      <button type="button" onClick={() => getCategories(4)}>
+      <button type="button" onClick={() => getDatabase(4)}>
+        <Link to="/">
         BLUSAS
+        </Link>
+
       </button>
-      <button type="button" onClick={() => getCategories(5)}>
+      <button type="button" onClick={() => getDatabase(5)}>
+        <Link to="/">
         CALÇADOS
+        </Link>
+
       </button>
-      <button type="button" onClick={() => getCategories(6)}>
+      <button type="button" onClick={() => getDatabase(6)}>
+        <Link to="/">
         BONÉS
+        </Link>
       </button>
     </MenuList>
   </Fragment>
 );
 
 Header.propTypes = {
-  getCategories: PropTypes.func.isRequired,
+  getDatabase: PropTypes.func.isRequired,
   lengthCart: PropTypes.func.isRequired,
 };
 

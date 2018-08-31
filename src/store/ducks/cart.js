@@ -49,7 +49,7 @@ export default function cart(state = INITIAL_STATE, action) {
           ],
         };
       }
-      return { ...state };
+      return { ...state, loading: false, error: false };
 
 
     case Types.REMOVE:

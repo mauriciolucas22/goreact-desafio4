@@ -11,6 +11,7 @@ import { Container, Content, Details } from './styles';
 
 // global Components
 import Header from '../Header';
+import Loading from '../Loading';
 
 class ProductDetails extends Component {
   static propTypes = {
@@ -38,12 +39,12 @@ class ProductDetails extends Component {
   };
 
   render() {
-    const { loading, database: { productSelected } } = this.props;
+    const { database: { productSelected, loading } } = this.props;
 
     return (
       <Container>
         <Header />
-        { loading ? <p>loading</p> : (
+        { loading ? <Loading /> : (
           <Content>
             { productSelected && (
               <Fragment>

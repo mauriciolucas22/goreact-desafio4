@@ -49,8 +49,9 @@ export default function database(state = INITAL_STATE, action) {
 }
 
 export const Actions = {
-  getDatabase: () => ({
+  getDatabase: id => ({
     type: Types.GET,
+    payload: { id },
   }),
 
   getCategories: id => ({

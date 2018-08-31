@@ -3,11 +3,20 @@ import api from '../../services/api';
 
 import { Actions as DatabaseActions } from '../ducks/database';
 
-export function* getDatabase() {
+export function* getDatabase(action) {
   try {
-    const response = yield call(api.get, '/products');
+    let response = null;
+    let data = null;
 
-    yield put(DatabaseActions.saveData(response.data));
+    if (!action.payload.id) {
+      response = yield call(api.get, '/products');
+      data = response.data;
+    } else {
+      response = yield call(api.get, `/category_products/${action.payload.id}`);
+      data = response.data.products;
+    }
+
+    yield put(DatabaseActions.saveData(data));
   } catch (err) {
     yield put(DatabaseActions.setError('Erro ao obter base de dados!'));
   }

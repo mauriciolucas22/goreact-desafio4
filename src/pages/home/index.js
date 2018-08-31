@@ -11,6 +11,7 @@ import { Container } from './styles';
 import ListItem from './components/ListItem';
 
 import Header from '../../components/Header';
+import Loading from '../../components/Loading';
 
 class Home extends Component {
   static propTypes = {
@@ -23,11 +24,11 @@ class Home extends Component {
   }
 
   render() {
-    const { data } = this.props.database;
+    const { data, loading } = this.props.database;
     return (
       <Container>
         <Header />
-        { data && <ListItem database={data} />}
+        { loading ? <Loading /> : <ListItem database={data} /> }
       </Container>
     );
   }
