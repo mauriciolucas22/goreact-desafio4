@@ -61,3 +61,21 @@ export const Empty = styled.div`
     font-size: 200px;
   }
 `;
+
+export const Total = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 30px;
+
+  #total {
+    margin: 0 10px 0 0;
+  }
+
+  #subTotal {
+    color: #37BEA9;
+    font-size: 20px;
+    font-weight: bold;
+  }
+`;

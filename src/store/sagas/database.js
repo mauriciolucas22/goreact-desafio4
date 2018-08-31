@@ -22,3 +22,13 @@ export function* getProduct(action) {
     yield put(DatabaseActions.setError('Erro ao obter produto!'));
   }
 }
+
+export function* getCategories(action) {
+  try {
+    const response = yield call(api.get, `/category_products/${action.payload.id}`);
+
+    yield put(DatabaseActions.saveData(response.data.products));
+  } catch (err) {
+    yield put(DatabaseActions.setError('Erro ao obter categoria'));
+  }
+}

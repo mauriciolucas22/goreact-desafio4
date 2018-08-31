@@ -3,6 +3,7 @@ import Immutable from 'seamless-immutable';
 export const Types = {
   GET: 'database/GET',
   GET_PRODUCT: 'database/GET_PRODUCT',
+  GET_CATEGORIES: 'database/GET_CATEGORIES',
   SET: 'database/SET',
   SET_PRODUCT_SELECTED: 'database/SET_PRODUCT_SELECTED',
   ERROR: 'database/ERROR',
@@ -50,6 +51,11 @@ export default function database(state = INITAL_STATE, action) {
 export const Actions = {
   getDatabase: () => ({
     type: Types.GET,
+  }),
+
+  getCategories: id => ({
+    type: Types.GET_CATEGORIES,
+    payload: { id },
   }),
 
   saveData: data => ({

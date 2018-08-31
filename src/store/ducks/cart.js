@@ -7,6 +7,7 @@ export const Types = {
 
 const INITIAL_STATE = {
   data: [],
+  subTotal: null,
   loading: false,
   error: null,
 };
@@ -17,30 +18,45 @@ function getIndex(state, id) {
   return itemIndex;
 }
 
+function updateSubTotal(state) {
+  let result = null;
+  state.data.forEach((element) => {
+    result += parseFloat(element.subTotal);
+  });
+
+  return result;
+}
+
 export default function cart(state = INITIAL_STATE, action) {
   switch (action.type) {
     case Types.GET:
-      return { ...state, loading: true };
+      return { ...state, loading: false };
 
     case Types.ADD_TO_CART:
       const { product } = action.payload;
       const exists = getIndex(state, product.id);
 
       if (exists === -1) {
+        state.subTotal = updateSubTotal(state);
         return {
+          ...state,
           loading: false,
           error: false,
+          subTotal: state.subTotal + product.price,
           data: [
             ...state.data,
             { ...product, amount: 1, subTotal: product.price },
           ],
         };
       }
+      return { ...state };
+
 
     case Types.REMOVE:
+      const productIndex = getIndex(state, action.payload.productId)
       return {
-        ...state,
-        data: state.data.filter(product => product.id !== action.payload.productID),
+        subTotal: state.subTotal -= state.data[productIndex].subTotal,
+        data: state.data.filter(product => product.id !== action.payload.productId),
       };
 
     case Types.CHANGE_AMOUNT:
@@ -51,6 +67,8 @@ export default function cart(state = INITIAL_STATE, action) {
 
       const newSubTotal = (newAmount * state.data[itemIndex].price).toFixed(2);
       state.data[itemIndex].subTotal = newSubTotal;
+
+      state.subTotal = updateSubTotal(state);
 
       return {
         ...state,
@@ -71,9 +89,9 @@ export const Actions = {
     payload: { product },
   }),
 
-  removeFromCart: productID => ({
+  removeFromCart: productId => ({
     type: Types.REMOVE,
-    payload: { productID },
+    payload: { productId },
   }),
 
   // data: { productID, newAmount }

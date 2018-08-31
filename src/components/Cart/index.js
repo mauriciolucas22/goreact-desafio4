@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 // Redux
 import { connect } from 'react-redux';
@@ -14,7 +14,7 @@ import ProductItem from './ProductItem';
 
 // local styles
 import {
-  Container, List, Empty,
+  Container, List, Empty, Total,
 } from './styles';
 
 class Cart extends Component {
@@ -23,29 +23,35 @@ class Cart extends Component {
   }
 
   renderList = () => (
-    <List cellPadding={0} cellSpacing={0}>
-      <thead>
-        <th>
-                PRODUTO
-        </th>
-        <th>
-                VALOR
-        </th>
-        <th>
-                QTD
-        </th>
-        <th>
-                SUBTOTAL
-        </th>
-      </thead>
+    <Fragment>
+      <List cellPadding={0} cellSpacing={0}>
+        <thead>
+          <th>
+                  PRODUTO
+          </th>
+          <th>
+                  VALOR
+          </th>
+          <th>
+                  QTD
+          </th>
+          <th>
+                  SUBTOTAL
+          </th>
+        </thead>
 
-      <tbody>
-        { this.props.cart.data.map(product => (
-          <ProductItem key={product.id} product={product} />
-        )) }
+        <tbody>
+          { this.props.cart.data.map(product => (
+            <ProductItem key={product.id} product={product} />
+          )) }
 
-      </tbody>
-    </List>
+        </tbody>
+      </List>
+      <Total>
+        <small id="total">TOTAL</small>
+        <strong id="subTotal">R$ {this.props.cart.subTotal}</strong>
+      </Total>
+    </Fragment>
   );
 
   render() {

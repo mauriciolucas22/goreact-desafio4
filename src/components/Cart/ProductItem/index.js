@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 // Redux
 import { connect } from 'react-redux';
@@ -13,7 +14,17 @@ import { TR } from './styles';
 class ProductItem extends Component {
   state = {
     amount: '1',
-    index: 0,
+  };
+
+  static propTypes = {
+    changeAmount: PropTypes.func.isRequired,
+    removeFromCart: PropTypes.func.isRequired,
+    product: PropTypes.shape({
+      name: PropTypes.string,
+      price: PropTypes.number,
+      id: PropTypes.number,
+      subTotal: PropTypes.number,
+    }).isRequired,
   };
 
   handleChangeAmount = (e, productId) => {
@@ -29,21 +40,23 @@ class ProductItem extends Component {
     const { product, removeFromCart } = this.props;
     const { amount } = this.state;
     return (
-      <TR key={product.id}>
-        <td>
-          {product.name}
+      <TR>
+        <td id="name">
+          <strong>{product.name}</strong>
+          <small>{product.brand}</small>
         </td>
-        <td>
+        <td id="price">
           {product.price}
         </td>
         <td>
           <input
+            id="count"
             type="text"
             value={amount}
             onChange={e => this.handleChangeAmount(e, product.id)}
           />
         </td>
-        <td>
+        <td id="price">
           {product.subTotal}
         </td>
         <td>
