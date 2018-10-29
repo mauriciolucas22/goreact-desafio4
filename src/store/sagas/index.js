@@ -1,16 +1,23 @@
 import { all, takeLatest } from 'redux-saga/effects';
 
 import { Types as DatabaseTypes } from '../ducks/database';
-import { Types as CartTypes } from '../ducks/cart';
 
-import { getDatabase, getProduct, getCategories } from './database';
-import { getCart } from './cart';
+import {
+  getDatabase,
+  getCategories,
+  getSupply,
+  newCar,
+  newAbastecimento,
+  getCar,
+} from './database';
 
 export default function* rootSaga() {
   yield all([
     takeLatest(DatabaseTypes.GET, getDatabase),
-    takeLatest(DatabaseTypes.GET_PRODUCT, getProduct),
+    takeLatest(DatabaseTypes.GET_SUPPLY, getSupply),
     takeLatest(DatabaseTypes.GET_CATEGORIES, getCategories),
-    takeLatest(CartTypes.GET, getCart),
+    takeLatest(DatabaseTypes.NEW_CAR_REQUEST, newCar),
+    takeLatest(DatabaseTypes.CREATE_ABA_REQUEST, newAbastecimento),
+    takeLatest(DatabaseTypes.GET_CAR_REQUEST, getCar),
   ]);
 }

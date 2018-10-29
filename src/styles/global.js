@@ -2,6 +2,8 @@ import { injectGlobal } from 'styled-components';
 
 import 'font-awesome/css/font-awesome.css';
 
+import { Spinner } from '../components/Loading/styles';
+
 injectGlobal`
   * {
     margin: 0;
@@ -27,5 +29,15 @@ injectGlobal`
 
   button {
     cursor: pointer;
+  }
+
+  .container {
+    height: 100%;
+    width: 1200px;
+
+    ${Spinner} {
+      height: 100px;
+      width: 100px;
+    }
   }
 `;

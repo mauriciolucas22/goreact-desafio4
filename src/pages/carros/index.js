@@ -6,30 +6,27 @@ import { bindActionCreators } from 'redux';
 
 import { Actions as DatabaseActions } from '../../store/ducks/database';
 
-import { Container } from './styles';
-
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
-import Table from '../../components/Table';
+import Table from '../../components/TableCarros';
 
-class Home extends Component {
+class Carros extends Component {
   static propTypes = {
     getDatabase: PropTypes.func.isRequired,
     database: PropTypes.shape().isRequired,
   };
 
   componentWillMount() {
-    this.props.getDatabase();
-    this.props.getSupply();
+    // this.props.getDatabase();
   }
 
   render() {
     const { data, loading } = this.props.database;
     return (
-      <Container>
+      <div className="container">
         <Header />
         { loading ? <Loading /> : <Table list={data} /> }
-      </Container>
+      </div>
     );
   }
 }
@@ -40,4 +37,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(DatabaseActions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Carros);

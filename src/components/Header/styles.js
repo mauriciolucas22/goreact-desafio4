@@ -5,14 +5,14 @@ export const Container = styled.div`
   justify-content: space-between;
 
   h1 {
-    color: #FF9696;
+    color: #266782;
     font-size: 50px;
     font-weight: bold;
   }
 
   small {
     font-size: 14px;
-    color: #727271;
+    color: #7ca3b4;
     margin-top: 20px;
 
     i {
@@ -25,7 +25,7 @@ export const MenuList = styled.div`
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  background: #FF9696;
+  background: #7ca3b4;
   border-radius: 4px;
   padding-left: 20px;
 

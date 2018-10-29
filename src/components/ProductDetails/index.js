@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { Actions as DatabaseActions } from '../../store/ducks/database';
 import { Actions as CartActions } from '../../store/ducks/cart';
 
+import CardContent from '../CardContent';
+
 // local styles
 import { Container, Content, Details } from './styles';
 
@@ -50,10 +52,7 @@ class ProductDetails extends Component {
               <Fragment>
                 <img src={productSelected.image} alt={productSelected.brand} />
                 <Details>
-                  <strong>{productSelected.name}</strong>
-                  <small>{productSelected.brand}</small>
-                  <p>R$ {productSelected.price}</p>
-                  <button type="button" onClick={this.handleAddToCart}>Adicionar ao carrinho</button>
+                  <CardContent />
                 </Details>
               </Fragment>
             ) }

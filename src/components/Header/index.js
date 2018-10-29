@@ -11,55 +11,37 @@ import { Actions as DatabaseActions } from '../../store/ducks/database';
 
 import { Container, MenuList } from './styles';
 
-const Header = ({ lengthCart, getDatabase }) => (
+const Header = ({ getDatabase }) => (
   <Fragment>
     <Container>
       <Link to="/" style={{ textDecoration: 'none' }}>
         <h1>
-          GoCommerce
+          Meus Carros
         </h1>
-      </Link>
-      <Link to="/cart">
-        <small>
-          <i className="fa fa-shopping-cart" />
-              Meu carrinho ({lengthCart})
-        </small>
       </Link>
     </Container>
 
     <MenuList>
       <button type="button" onClick={() => getDatabase(1)}>
         <Link to="/">
-        CAMISETAS
+        Home
         </Link>
       </button>
 
-      <button type="button" onClick={() => getDatabase(2)}>
-        <Link to="/">
-          CAMISAS
+      <button type="button">
+        <Link to="/carros/new">
+        Novo Carro
         </Link>
       </button>
+
       <button type="button" onClick={() => getDatabase(3)}>
-        <Link to="/">
-        BONÉS
+        <Link to="/abastecimentos">
+        Abastecimentos
         </Link>
-
       </button>
-      <button type="button" onClick={() => getDatabase(4)}>
-        <Link to="/">
-        BLUSAS
-        </Link>
-
-      </button>
-      <button type="button" onClick={() => getDatabase(5)}>
-        <Link to="/">
-        CALÇADOS
-        </Link>
-
-      </button>
-      <button type="button" onClick={() => getDatabase(6)}>
-        <Link to="/">
-        BONÉS
+      <button type="button">
+        <Link to="/abastecimentos/new">
+        Novo Abastecimento
         </Link>
       </button>
     </MenuList>
@@ -68,11 +50,9 @@ const Header = ({ lengthCart, getDatabase }) => (
 
 Header.propTypes = {
   getDatabase: PropTypes.func.isRequired,
-  lengthCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  lengthCart: state.cart.data.length,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(DatabaseActions, dispatch);
